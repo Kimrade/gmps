@@ -26,6 +26,7 @@ public class PageRequestDTO {
 	
 	private String keyword;
 	
+	
 	// type을 문자열의 배열로 만들어서 리턴
 	public String[] getTypes() {	// el등에서는 이와 같이 사용해야 호출됨 types
 		if(type == null || type.isEmpty()) {
@@ -34,10 +35,12 @@ public class PageRequestDTO {
 		return type.split("");
 	}
 	
+	
 	// Pageable 객체 리턴용
 	public Pageable getPageable(String...props) {
 		return PageRequest.of(page-1, size, Sort.by(props).descending());
 	}
+	
 	
 	// 링크용 쿼리스트링을 만들어주는 메소드
 	private String link;

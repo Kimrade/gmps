@@ -3,7 +3,9 @@ package org.kimrade.gmps.domain;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -67,5 +69,6 @@ public class NoticeCheck {
 	
 	// 회사 정보
 	// 유저정보 - 테이블 조인용
-	private int userNo;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private UserInfo userInfo;
 }

@@ -11,10 +11,10 @@ public interface UserInfoService {
 	public boolean userInfoUpdate(UserInfoDTO userInfoDTO);
 	
 	// 정보 삭제
-	public boolean userInfoDelete(int userNo);
+	public boolean userInfoDelete(String id);
 	
 	// 사용자 정보 조회
-	public UserInfoDTO userInfoSearchById(int userNo);
+	public UserInfoDTO userInfoSearchById(String id);
 	
 	
 }

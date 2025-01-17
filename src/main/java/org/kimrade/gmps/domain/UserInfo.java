@@ -1,6 +1,8 @@
 package org.kimrade.gmps.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,9 +18,10 @@ import lombok.ToString;
 @Entity
 public class UserInfo {
 	
-	// 사용자 고유번호 -> 공고 테이블과 연동이 되게
 	@Id
-	private int userNo;
+	private String id;
+	
+	private String pw;
 	
 	// 사업자명 - 회사명
 	private String companyName;

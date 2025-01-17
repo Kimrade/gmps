@@ -26,7 +26,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 		
 		UserInfo userInfo = modelMapper.map(userInfoDTO, UserInfo.class);
 		
-		if(uir.findById(userInfo.getUserNo()).isEmpty()){
+		if(uir.findById(userInfo.getId()).isEmpty()){
 			
 		}else {
 			uir.save(userInfo);
@@ -43,7 +43,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 		
 		UserInfo userInfo = modelMapper.map(userInfoDTO, UserInfo.class);
 		
-		if(uir.findById(userInfo.getUserNo()).isEmpty()) {
+		if(uir.findById(userInfo.getId()).isEmpty()) {
 			
 		}else {
 			uir.save(userInfo);
@@ -55,13 +55,13 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	@Transactional
-	public boolean userInfoDelete(int userNo) {
+	public boolean userInfoDelete(String id) {
 		boolean result = false;
 		
-		if(uir.findById(userNo).isEmpty()) {
+		if(uir.findById(id).isEmpty()) {
 			
 		}else {
-			uir.deleteById(userNo);;
+			uir.deleteById(id);;
 			result = true;
 		}
 		
@@ -69,8 +69,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public UserInfoDTO userInfoSearchById(int userNo) {
-		Optional<UserInfo> result = uir.findById(userNo);
+	public UserInfoDTO userInfoSearchById(String id) {
+		Optional<UserInfo> result = uir.findById(id);
 		
 		return modelMapper.map(result.orElseThrow(), UserInfoDTO.class);
 		
