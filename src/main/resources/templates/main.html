@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>GMBS</title>
+    <title>GMPS</title>
 
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -32,7 +32,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/main">
-                <div class="sidebar-brand-text mx-3"><h3>GMBS</h3><sup></sup></div>
+                <div class="sidebar-brand-text mx-3"><h3>GMPS</h3><sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -106,7 +106,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">[[${userName}]]</span>
                                 <img class="img-profile rounded-circle"
                                     src="/img/undraw_profile.svg">
                             </a>
@@ -147,40 +147,48 @@
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
-					<div>
+					<div class="table-responsive">
 						<h2>오늘의 참가 마감</h2>
-						<table>
-							<tr>
-								<th>공고 번호</th>
-								<th>공고 명</th>
-								<th>참가 신청 마감</th>
-								<th>플랫폼</th>
-							</tr>
-							<tr>
-								<th>02349</th>
-								<th>----- 구매</th>
-								<th>2025-01-18</th>
-								<th>국방</th>
-							</tr>
+						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+							<thead>
+                                <tr>
+                                    <th>공고 번호</th>
+                                    <th>공고 명</th>
+                                    <th>참가 신청 마감</th>
+                                    <th>플랫폼</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>02349</th>
+                                    <a href="#"><th>----- 구매</th></a>
+                                    <th>2025-01-18</th>
+                                    <th>국방</th>
+                                </tr>
+                            </tbody>
 						</table>
 					</div>
 					
 					
-					<div>
+					<div class="table-responsive">
 						<h2>오늘의 투찰 마감</h2>
-						<table>
-							<tr>
-								<th>공고 번호</th>
-								<th>공고 명</th>
-								<th>투찰 제출 마감</th>
-								<th>플랫폼</th>
-							</tr>
-							<tr>
-								<th>02349</th>
-								<th>----- 구매</th>
-								<th>2025-01-18</th>
-								<th>국방</th>
-							</tr>
+						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+							<thead>
+                                <tr>
+                                    <th>공고 번호</th>
+                                    <th>공고 명</th>
+                                    <th>투찰 제출 마감</th>
+                                    <th>플랫폼</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>02349</th>
+                                    <a herf=""><th>----- 구매</th></a>
+                                    <th>2025-01-18</th>
+                                    <th>국방</th>
+                                </tr>
+                            </tbody>
 						</table>
 					</div>
                 </div>
@@ -246,5 +254,13 @@
     <script src="/js/demo/chart-pie-demo.js"></script>
 
 </body>
+
+	<script th:inline="javascript">
+    	let alert1 = [[${alert1}]];
+    	
+    	if(alert1){
+    		alert(alert1);
+    	}
+    </script>
 
 </html>

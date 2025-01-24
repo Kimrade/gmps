@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>GMBS</title>
+    <title>GMPS</title>
 
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -32,7 +32,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/main">
-                <div class="sidebar-brand-text mx-3"><h3>GMBS</h3><sup></sup></div>
+                <div class="sidebar-brand-text mx-3"><h3>GMPS</h3><sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -141,37 +141,71 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Notice Memo</h1>
                     </div>
-                    <div>
-                        <input type="text" placeholder="검색어">
-                        <button type="button">검색</button>
-                        <br>
-                        <br>
-                        나의 입찰 정리
-                        <br>
-                        <br>
-                        <table border="1">
-                            <tr>
-                                <th>공고 번호</th>
-                                <th>공 고 명</th>
-                                <th>참가 마감일</th>
-                                <th>투찰 마감일</th>
-                                <th>등록일</th>
-                                <th>플랫폼 분류</th>
-                            </tr>
-                            <tr>
-                                <th>02332</th>
-                                <th>음식류 구매</th>
-                                <th>2025-01-06</th>
-                                <th>2025-01-09</th>
-                                <th>2025-01-04</th>
-                                <th>국방전자조달</th>
-                            </tr>
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="검색"
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+                    <hr>
+                    <br>
+                    나의 입찰 정리
+                    <br>
+                    <br>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>공고 번호</th>
+                                    <th>공 고 명</th>
+                                    <th>참가 마감일</th>
+                                    <th>투찰 마감일</th>
+                                    <th>등록일</th>
+                                    <th>플랫폼 분류</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>02332</th>
+                                    <th>음식류 구매</th>
+                                    <th>2025-01-06</th>
+                                    <th>2025-01-09</th>
+                                    <th>2025-01-04</th>
+                                    <th>국방전자조달</th>
+                                </tr>
+                            </tbody>
                         </table>
-                        페이지 처리
-                        <span>1  2  3  4  5  6  7  8  9  10</span>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                              <li class="page-item"><a class="page-link" href="#">1</a></li>
+                              <li class="page-item"><a class="page-link" href="#">2</a></li>
+                              <li class="page-item"><a class="page-link" href="#">3</a></li>
+                              <li class="page-item"><a class="page-link" href="#">4</a></li>
+                              <li class="page-item"><a class="page-link" href="#">5</a></li>
+                              <li class="page-item"><a class="page-link" href="#">6</a></li>
+                              <li class="page-item"><a class="page-link" href="#">7</a></li>
+                              <li class="page-item"><a class="page-link" href="#">8</a></li>
+                              <li class="page-item"><a class="page-link" href="#">9</a></li>
+                              <li class="page-item"><a class="page-link" href="#">10</a></li>
+                              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                            </ul>
+                          </nav>
                         <br>
                         <br>
-                        <a href="/gmps/memoinsert"><button type="button">메모 등록</button></a>
+                        <a href="/gmps/memoinsert" class="btn btn-success btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-check"></i>
+                            </span>
+                            <span class="text">메모 작성</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -236,5 +270,12 @@
     <script src="/js/demo/chart-pie-demo.js"></script>
 
 </body>
+	<script th:inline="javascript">
+		let insertAlert = [[${insertAlert}]]
+		
+		if(insertAlert){
+			alert(insertAlert);
+		}
+	</script>
 
 </html>

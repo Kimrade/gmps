@@ -22,14 +22,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 	
 	@Override
 	public boolean userInfoInsert(UserInfoDTO userInfoDTO) {
+		log.info("UserInfoService 진입");
 		boolean result = false;
 		
-		UserInfo userInfo = modelMapper.map(userInfoDTO, UserInfo.class);
-		
-		if(uir.findById(userInfo.getId()).isEmpty()){
-			
-		}else {
-			uir.save(userInfo);
+		if(uir.findById(userInfoDTO.getId()).isEmpty()){
+			uir.save(modelMapper.map(userInfoDTO, UserInfo.class));
 			result = true;
 		}
 		
@@ -72,8 +69,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public UserInfoDTO userInfoSearchById(String id) {
 		Optional<UserInfo> result = uir.findById(id);
 		
-		return modelMapper.map(result.orElseThrow(), UserInfoDTO.class);
-		
+		if(result.isEmpty()) {
+			return null;
+		}else {
+			return modelMapper.map(result.orElseThrow(), UserInfoDTO.class);
+		}
 	}
 
 }

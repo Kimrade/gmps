@@ -34,8 +34,6 @@ public class NoticeCheckServiceImpl implements NoticeCheckService {
 		if(ncr.findById(nc.getNoticeNo()).isEmpty()) {
 			ncr.save(nc);
 			result = true;
-		}else {
-			
 		}
 		
 		return result;

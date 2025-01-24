@@ -2,6 +2,9 @@ package org.kimrade.gmps.domain;
 
 import java.time.LocalDateTime;
 
+import org.springframework.data.annotation.CreatedDate;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -14,7 +17,7 @@ import lombok.ToString;
 
 @Builder
 @Getter
-@ToString
+@ToString(exclude = "userInfo")
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -24,7 +27,7 @@ public class NoticeCheck {
 	@Id
 	private String noticeNo;
 	
-	// 공공명
+	// 공고명
 	private String noticeName;
 	
 	// 기초 예가
@@ -52,9 +55,12 @@ public class NoticeCheck {
 	private LocalDateTime noticeDesDate;
 	
 	// 메모 생성 날짜
+	@Column(updatable = false)
+	@CreatedDate
 	private LocalDateTime memoCreatedDate;
 	
 	// 국방 혹은 나라장터등 플랫폼 설정
+	@Column(nullable = false)
 	private String pname;
 	
 	// - 투찰 정보등 -> null 가능
@@ -69,6 +75,6 @@ public class NoticeCheck {
 	
 	// 회사 정보
 	// 유저정보 - 테이블 조인용
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)	// LAZY or EAGER
 	private UserInfo userInfo;
 }

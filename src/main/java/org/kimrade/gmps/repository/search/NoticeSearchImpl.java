@@ -84,7 +84,7 @@ public class NoticeSearchImpl extends QuerydslRepositorySupport implements Notic
 
 	@Override
 	public Page<NoticeCheck> searchTodayByDesDate(LocalDateTime today, LocalDateTime tomorrow, Pageable pageable) {
-QNoticeCheck nc = QNoticeCheck.noticeCheck;
+		QNoticeCheck nc = QNoticeCheck.noticeCheck;
 		
 		JPQLQuery<NoticeCheck> query = from(nc);
 		

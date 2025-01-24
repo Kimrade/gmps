@@ -2,6 +2,10 @@ package org.kimrade.gmps.dto;
 
 import java.time.LocalDateTime;
 
+import org.kimrade.gmps.domain.UserInfo;
+
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -61,5 +65,5 @@ public class NoticeCheckDTO {
 	
 	// 회사 정보
 	// 유저정보 - 테이블 조인용
-	private int userNo;
+	private String id;
 }
