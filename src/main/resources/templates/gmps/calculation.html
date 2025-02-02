@@ -117,15 +117,6 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
                             </div>
                         </li>
 
@@ -141,17 +132,48 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Notice Calculation</h1>
                     </div>
-                    <div>
-                        기초예가 : <input type="number" name=""><br>
-                        상한가 : <input type="number" name=""><br>
-                        하한가 : <input type="number" name=""><br>
-                        사정률 : <input type="number" name=""><br>
-                        투찰가 : <input type="number" name=""><br>
-                        <button type="button">계산</button>
-                        <br> 
-                        위와 비슷하게 설정하는 낙찰 사정률 계산기
-                        각 공고별로 select로 설정해서 사용할수있게 세팅해두기
+                    <form action="#" method="get">
+	                    <div class="table-responsive">
+	                        <table class="table table-bordered table-sm" id="table1" width="80%" cellspacing="0">
+	                            <thead>
+	                                <tr>
+	                                    <th>기초 예가</th>
+	                                    <th>상 한 가</th>
+	                                    <th>하 한 가</th>
+	                                    <th>하 한 률</th>
+	                                    <th>투 찰 가</th>
+	                                    <th></th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                                <tr>
+	                                    <th><div class="input-group input-group-sm mb-3"><input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required></div></th>
+	                                    <th><div class="input-group input-group-sm mb-3"><input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required></div></th>
+	                                    <th><div class="input-group input-group-sm mb-3"><input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required></div></th>
+	                                    <th><div class="input-group input-group-sm mb-3"><input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required></div></th>
+	                                    <th><div class="input-group input-group-sm mb-3"><input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required></div></th>
+	                                    <th><button onclick="" class="btn btn-primary btn-sm">계 산</button></th>
+	                                </tr>
+	                            </tbody>
+	                        </table>
+	                    </div>
+                    </form>
+                    
+                    <div class="table-responsive">
+                    	<table class="table table-bordered table-sm" id="table2" width="80%" cellspacing="0" hidden>
+                    		<thead>
+                    			<tr>
+                    				<th></th>
+                    			</tr>
+                    		</thead>
+                    		<tbody>
+                    			<tr>
+                    				<th></th>
+                    			</tr>
+                    		</tbody>
+                    	</table>
                     </div>
+                    
                 </div>
             </div>
             <!-- End of Main Content -->
@@ -215,5 +237,7 @@
     <script src="/js/demo/chart-pie-demo.js"></script>
 
 </body>
-
+	<script th:inline="javascript">
+		
+	</script>
 </html>

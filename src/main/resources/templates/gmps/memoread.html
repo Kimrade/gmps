@@ -117,15 +117,6 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
                             </div>
                         </li>
 
@@ -141,60 +132,60 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">입찰 메모 기록</h1>
                     </div>
-                    <form>
+                    <form action="/gmps/memomodify" method="get">
                         <div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">공고 번호</span>
-                                <input type="text" class="form-control" name="" placeholder="예) 03292" aria-describedby="basic-addon1" readonly>
+                                <input type="text" class="form-control" name="noticeNo" th:value="${noticeCheckDTO.noticeNo}" aria-describedby="basic-addon1" readonly>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">&nbsp;공 고 명&nbsp;</span>
-                                <input type="text" class="form-control" name="" placeholder="예) ----- 물품 구매" aria-describedby="basic-addon1" readonly>
+                                <input type="text" class="form-control" name="noticeName" th:value="${noticeCheckDTO.noticeName}" aria-describedby="basic-addon1" readonly>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">기초 예가</span>
-                                <input type="text" class="form-control" name="" readonly>
+                                <input type="text" class="form-control" name="noticeOriginalPrice" th:value="${noticeCheckDTO.noticeOriginalPrice}" readonly>
                                 <span class="input-group-text">원</span>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">&nbsp;상 한 가&nbsp;</span>
-                                <input type="text" class="form-control" name="" readonly>
+                                <input type="text" class="form-control" name="noticeUpNum" th:value="${noticeCheckDTO.noticeUpNum}" readonly>
                                 <span class="input-group-text">원</span>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">&nbsp;하 한 가&nbsp;</span>
-                                <input type="text" class="form-control" name="" readonly>
+                                <input type="text" class="form-control" name="noticeDownNum" th:value="${noticeCheckDTO.noticeDownNum}" readonly>
                                 <span class="input-group-text">원</span>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">&nbsp;투 찰 가&nbsp;</span>
-                                <input type="text" class="form-control" name="" readonly>
+                                <input type="text" class="form-control" name="userInputPrice" th:value="${noticeCheckDTO.userInputPrice}" readonly>
                                 <span class="input-group-text">원</span>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">&nbsp;공 고 일&nbsp;</span>
-                                <input type="date" class="form-control" name="" aria-describedby="basic-addon1" readonly>
+                                <input type="date" class="form-control" name="noticeDate" th:value="${noticeCheckDTO.noticeDate}" aria-describedby="basic-addon1" readonly>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">입찰 마감</span>
-                                <input type="date" class="form-control" name="" aria-describedby="basic-addon1" readonly>
+                                <input type="date" class="form-control" name="noticeResDate" th:value="${noticeCheckDTO.noticeResDate}" aria-describedby="basic-addon1" readonly>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">투찰 마감</span>
-                                <input type="date" class="form-control" name="" aria-describedby="basic-addon1" readonly>
+                                <input type="date" class="form-control" name="noticeDesDate" th:value="${noticeCheckDTO.noticeDesDate}" aria-describedby="basic-addon1" readonly>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">&nbsp;플 랫 폼&nbsp;</span>
-                                <input type="text" class="form-control" name="" aria-describedby="basic-addon1" readonly>
+                                <input type="text" class="form-control" name="pname" th:value="${noticeCheckDTO.pname}" aria-describedby="basic-addon1" readonly>
                             </div>
                         </div>
                         <br>
-                        <a href="/gmps/memomodify" class="btn btn-secondary btn-icon-split">
+                        <button type="submit" class="btn btn-secondary btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-arrow-right"></i>
                             </span>
                             <span class="text">메모 수정 메뉴</span>
-                        </a>
+                        </button>
                     </form>
                 </div>
             </div>

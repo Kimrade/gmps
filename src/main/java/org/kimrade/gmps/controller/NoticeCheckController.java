@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.kimrade.gmps.dto.NoticeCheckDTO;
 import org.kimrade.gmps.dto.PageRequestDTO;
+import org.kimrade.gmps.dto.PageRequestDTO2;
 import org.kimrade.gmps.dto.UserInfoDTO;
 import org.kimrade.gmps.service.NoticeCheckService;
 import org.kimrade.gmps.service.UserInfoService;
@@ -78,23 +79,16 @@ public class NoticeCheckController {
 	@GetMapping("/main")
 	public void main2(Model model) {
 		
-		PageRequestDTO pageRequestDTO = PageRequestDTO.builder().size(5).page(1).build();
-		
-		LocalDateTime present = LocalDateTime.now();
-		
-		log.info("날짜 확인용 : "+present);
-		log.info("날짜 확인용 : "+present.plusDays(2));
+		PageRequestDTO2 pageRequestDTO2 = new PageRequestDTO2();
 
-		model.addAttribute("reslist", ncs.noticeMemoSearchRes(pageRequestDTO, present, present.plusDays(2)));
-		model.addAttribute("deslist", ncs.noticeMemoSearchDes(pageRequestDTO, present, present.plusDays(2)));
+		model.addAttribute("reslist", ncs.noticeMemoSearchRes(pageRequestDTO2));
+		model.addAttribute("deslist", ncs.noticeMemoSearchDes(pageRequestDTO2));
 	}
 	
 	@GetMapping("/gmps/memo")
-	public void memoListGet(Model model) {
+	public void memoListGet(Model model,PageRequestDTO pageRequestDTO) {
 		
-		PageRequestDTO pageRequestDTO = PageRequestDTO.builder().size(10).page(1).build();
-		
-		model.addAttribute("listAll", ncs.noticeMemoListAll(pageRequestDTO));
+		model.addAttribute(ncs.noticeMemoListAll(pageRequestDTO));
 	}
 	
 	@GetMapping("/gmps/memoinsert")
@@ -117,6 +111,43 @@ public class NoticeCheckController {
 		return "gmps/memo";
 	}
 	
+	@GetMapping({"/gmps/memoread" , "/gmps/memomodify"})
+	public void readNmodifyGet(@RequestParam("noticeNo")String noticeNo, Model model,RedirectAttributes ra) {
+		
+		if(ncs.noticeReadOne(noticeNo) != null) {
+			model.addAttribute(ncs.noticeReadOne(noticeNo));
+		}else {
+			log.info("버그 발생 !!!! - 페이지 열기 실패 => 읽기 혹은 수정 메뉴");
+		}
+	}
+	
+	@PostMapping("/gmps/memomodify")
+	public String memoModifyPost(NoticeCheckDTO noticeCheckDTO, RedirectAttributes ra) {
+		
+		if(ncs.noticeMemoUpdate(noticeCheckDTO)) {
+			ra.addFlashAttribute("updateAlert", "수정을 성공적으로 마무리하였습니다.");
+		}else {
+			log.info("버그 발생 !!! - 수정 실패");
+		}
+		
+		return "redirect:/gmps/memoread?noticeNo="+noticeCheckDTO.getNoticeNo();
+	}
+	
+	@PostMapping("/gmps/memodelete")
+	public String memoDeletePost(@RequestParam("noticeNo")String noticeNo, RedirectAttributes ra) {
+		
+		if(ncs.noticeMemoDelete(noticeNo)) {
+			ra.addFlashAttribute("deleteAlert", "삭제를 성공적으로 마무리하였습니다.");
+		}else {
+			log.info("버그 발생 !!! - 삭제 실패");
+		}
+		
+		return "redirect:/gmps/memo";
+	}
+	
+	
+	
+	
 	@GetMapping("/gmps/calculation")
 	public void calculationGet() {
 
@@ -127,6 +158,15 @@ public class NoticeCheckController {
 		
 	}
 	
+	@GetMapping("/gmps/labelmake")
+	public void labelmakeGet() {
+		
+	}
+	
+	@PostMapping("/gmps/labelmake")
+	public void labelmakePost(@RequestParam("pno")String pno, @RequestParam("pqty") String pqty,@RequestParam("punit") String punit, @RequestParam("pwidth") String pwidth, @RequestParam("pheight") String pheight, @RequestParam("plength") String plength, @RequestParam("pweight") String pweight, @RequestParam("plotno") String plotno, @RequestParam("pname") String pname, @RequestParam("pnameE") String pnameE, @RequestParam("pproducedate") String pproducedate, @RequestParam("penddate") String penddate, @RequestParam("pcontactno") String pcontactno, @RequestParam("pcontactcompany") String pcontactcompany, @RequestParam("ptelno") String ptelno, RedirectAttributes ra, Model model) {
+		
+	}
 	
 	
 	

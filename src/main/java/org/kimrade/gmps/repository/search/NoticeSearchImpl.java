@@ -21,7 +21,7 @@ public class NoticeSearchImpl extends QuerydslRepositorySupport implements Notic
 	
 	
 	@Override
-	public Page<NoticeCheck> searchByKeyword(String[] types, String keyword, LocalDateTime from, LocalDateTime to, Pageable pageable) {
+	public Page<NoticeCheck> searchByKeyword(String[] types, String keyword, Pageable pageable) {
 		QNoticeCheck nc = QNoticeCheck.noticeCheck;
 		
 		JPQLQuery<NoticeCheck> query = from(nc);
@@ -31,20 +31,14 @@ public class NoticeSearchImpl extends QuerydslRepositorySupport implements Notic
 		if((types != null && types.length > 0) && keyword != null) {
 			for(String type : types) {
 				switch(type) {
-					case "n":
-						bb.or(nc.noticeName.contains(""));
+					case "b":
+						bb.or(nc.noticeName.contains(keyword));
 					break;
-					case "p":
+					case "c":
 						bb.or(nc.pname.eq(keyword));
 					break;
-					case "d1":
-						bb.or(nc.noticeDate.between(from, to));
-					break;
-					case "d2":
-						bb.or(nc.noticeResDate.between(from, to));
-					break;
-					case "d3":
-						bb.or(nc.noticeDesDate.between(from, to));
+					case "a":
+						bb.or(nc.noticeNo.contains(keyword));
 					break;
 				}
 			}
@@ -61,17 +55,15 @@ public class NoticeSearchImpl extends QuerydslRepositorySupport implements Notic
 
 
 	@Override
-	public Page<NoticeCheck> searchTodayByResDate(LocalDateTime today, LocalDateTime tomorrow, Pageable pageable) {
+	public Page<NoticeCheck> searchTodayByResDate(Pageable pageable) {
 		QNoticeCheck nc = QNoticeCheck.noticeCheck;
 		
 		JPQLQuery<NoticeCheck> query = from(nc);
 		
 		BooleanBuilder bb = new BooleanBuilder();
 		
-		if(today != null && tomorrow != null) {
-			bb.or(nc.noticeResDate.between(today, tomorrow));
-			query.where(bb);
-		}
+		bb.or(nc.noticeResDate.between(LocalDateTime.now().minusDays(1L), LocalDateTime.now().plusDays(3L)));
+		query.where(bb);
 		
 		this.getQuerydsl().applyPagination(pageable, query);
 		
@@ -83,17 +75,15 @@ public class NoticeSearchImpl extends QuerydslRepositorySupport implements Notic
 
 
 	@Override
-	public Page<NoticeCheck> searchTodayByDesDate(LocalDateTime today, LocalDateTime tomorrow, Pageable pageable) {
+	public Page<NoticeCheck> searchTodayByDesDate(Pageable pageable) {
 		QNoticeCheck nc = QNoticeCheck.noticeCheck;
 		
 		JPQLQuery<NoticeCheck> query = from(nc);
 		
 		BooleanBuilder bb = new BooleanBuilder();
 		
-		if(today != null && tomorrow != null) {
-			bb.or(nc.noticeDesDate.between(today, tomorrow));
-			query.where(bb);
-		}
+		bb.or(nc.noticeDesDate.between(LocalDateTime.now().minusDays(1L), LocalDateTime.now().plusDays(3L)));
+		query.where(bb);
 		
 		this.getQuerydsl().applyPagination(pageable, query);
 		

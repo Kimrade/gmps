@@ -130,66 +130,82 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Notice Label</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Product Label Insert</h1>
                     </div>
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="검색"
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+                    <form action="/gmps/labelmake" method="post">
+                        <div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">재고 번호</span>
+                                <input type="text" class="form-control" name="pno" placeholder="예) " aria-describedby="basic-addon1" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">수 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 량</span>
+                                <input type="text" class="form-control" name="pqty" placeholder="예) 331" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">수량 단위</span>
+                                <input type="text" class="form-control" name="punit" placeholder="예) EA" step="0.001">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">가 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 로</span>
+                                <input type="text" class="form-control" name="pwidth" placeholder="예) 50" step="0.1">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">세 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 로</span>
+                                <input type="text" class="form-control" name="plength" placeholder="예) 30" step="0.1">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">높 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이</span>
+                                <input type="text" class="form-control" name="pheight" placeholder="예) 10" step="0.001">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">무 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 게</span>
+                                <input type="text" class="form-control" name="pweight" placeholder="예) 10" step="0.001">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">로트 넘버</span>
+                                <input type="text" class="form-control" name="plotno" step="0.001">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">품 &nbsp; 목 &nbsp;명</span>
+                                <input type="text" class="form-control" name="pname" placeholder="예) 멜빵" step="0.001">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">품목 영문</span>
+                                <input type="text" class="form-control" name="pnameE" placeholder="예) BELT" step="0.001">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">제조 일자</span>
+                                <input type="text" class="form-control" name="pproducedate" placeholder="예) 20250101" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">사용 기한</span>
+                                <input type="text" class="form-control" name="penddate" placeholder="예) 99991201" aria-describedby="basic-addon1">
+                            </div>
+                            
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">계약 번호</span>
+                                <input type="text" class="form-control" name="pcontactno" placeholder="예) 2025LCF0101" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">계약 업체</span>
+                                <input type="text" class="form-control" name="pcontactcompany" placeholder="예) 마하나임 테크니션" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">전화 번호</span>
+                                <input type="text" class="form-control" name="ptelno" placeholder="예) 02-123-4567" aria-describedby="basic-addon1">
                             </div>
                         </div>
-                    </form>
-                    <br>
-                    <hr>
-                    <br>
-                    나의 라벨 정리
-                    <br>
-                    <br>
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>라벨 번호</th>
-                                    <th>재고 번호</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>1</th>
-                                    <th>375313456134</th>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                              <li class="page-item"><a class="page-link" href="#">1</a></li>
-                              <li class="page-item"><a class="page-link" href="#">2</a></li>
-                              <li class="page-item"><a class="page-link" href="#">3</a></li>
-                              <li class="page-item"><a class="page-link" href="#">4</a></li>
-                              <li class="page-item"><a class="page-link" href="#">5</a></li>
-                              <li class="page-item"><a class="page-link" href="#">6</a></li>
-                              <li class="page-item"><a class="page-link" href="#">7</a></li>
-                              <li class="page-item"><a class="page-link" href="#">8</a></li>
-                              <li class="page-item"><a class="page-link" href="#">9</a></li>
-                              <li class="page-item"><a class="page-link" href="#">10</a></li>
-                              <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                            </ul>
-                          </nav>
                         <br>
-                        <br>
-                        <a href="/gmps/labelmake" class="btn btn-success btn-icon-split">
+                        <button type="submit" class="btn btn-success btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-check"></i>
                             </span>
-                            <span class="text">라벨 생성</span>
-                        </a>
-                    </div>
+                            <span class="text">QR Code 및 Bar Code 생성</span>
+                        </button>
+                        <br><br>
+                        <input type="text" name="id" value="" hidden>
+                    </form>
                 </div>
             </div>
             <!-- End of Main Content -->
@@ -253,12 +269,5 @@
     <script src="/js/demo/chart-pie-demo.js"></script>
 
 </body>
-	<script th:inline="javascript">
-		let insertAlert = [[${insertAlert}]]
-		
-		if(insertAlert){
-			alert(insertAlert);
-		}
-	</script>
 
 </html>

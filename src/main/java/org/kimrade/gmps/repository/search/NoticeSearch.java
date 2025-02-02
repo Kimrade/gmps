@@ -8,9 +8,9 @@ import org.springframework.data.domain.Pageable;
 
 public interface NoticeSearch {
 	
-	public Page<NoticeCheck> searchByKeyword(String types[], String keyword, LocalDateTime from, LocalDateTime to,Pageable pageable);
+	public Page<NoticeCheck> searchByKeyword(String types[], String keyword, Pageable pageable);
 
-	public Page<NoticeCheck> searchTodayByResDate(LocalDateTime today, LocalDateTime tomorrow, Pageable pageable);
+	public Page<NoticeCheck> searchTodayByResDate(Pageable pageable);
 	
-	public Page<NoticeCheck> searchTodayByDesDate(LocalDateTime today, LocalDateTime tomorrow, Pageable pageable);
+	public Page<NoticeCheck> searchTodayByDesDate(Pageable pageable);
 }

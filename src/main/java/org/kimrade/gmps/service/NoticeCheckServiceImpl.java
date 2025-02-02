@@ -7,8 +7,11 @@ import java.util.stream.Collectors;
 import org.kimrade.gmps.domain.NoticeCheck;
 import org.kimrade.gmps.dto.NoticeCheckDTO;
 import org.kimrade.gmps.dto.PageRequestDTO;
+import org.kimrade.gmps.dto.PageRequestDTO2;
 import org.kimrade.gmps.dto.PageResponseDTO;
+import org.kimrade.gmps.dto.PageResponseDTO2;
 import org.kimrade.gmps.repository.NoticeCheckRepository;
+import org.kimrade.gmps.repository.UserInfoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -24,7 +27,6 @@ public class NoticeCheckServiceImpl implements NoticeCheckService {
 	
 	private final ModelMapper modelMapper;
 	private final NoticeCheckRepository ncr;
-	
 	
 	@Override
 	public boolean noticeMemoInsert(NoticeCheckDTO noticeCheckDTO) {
@@ -81,9 +83,9 @@ public class NoticeCheckServiceImpl implements NoticeCheckService {
 	}
 
 	@Override
-	public PageResponseDTO<NoticeCheckDTO> noticeMemoSearch(PageRequestDTO pageRequestDTO, LocalDateTime from, LocalDateTime to) {
+	public PageResponseDTO<NoticeCheckDTO> noticeMemoSearch(PageRequestDTO pageRequestDTO) {
 		
-		Page<NoticeCheck> result = ncr.searchByKeyword(pageRequestDTO.getTypes(), pageRequestDTO.getKeyword(), from, to, pageRequestDTO.getPageable("memoCreatedDate"));
+		Page<NoticeCheck> result = ncr.searchByKeyword(pageRequestDTO.getTypes(), pageRequestDTO.getKeyword(), pageRequestDTO.getPageable("memoCreatedDate"));
 		int totalcount = (int)result.getTotalElements();
 		
 		List<NoticeCheckDTO> dtolist = result.getContent().stream().map(x -> modelMapper.map(x, NoticeCheckDTO.class)).collect(Collectors.toList());
@@ -94,29 +96,44 @@ public class NoticeCheckServiceImpl implements NoticeCheckService {
 	}
 
 	@Override
-	public PageResponseDTO<NoticeCheckDTO> noticeMemoSearchRes(PageRequestDTO pageRequestDTO, LocalDateTime today, LocalDateTime tomorrow) {
+	public PageResponseDTO2<NoticeCheckDTO> noticeMemoSearchRes(PageRequestDTO2 pageRequestDTO2) {
 		
-		Page<NoticeCheck> result = ncr.searchTodayByResDate(today, tomorrow, pageRequestDTO.getPageable("memoCreatedDate"));
+		Page<NoticeCheck> result = ncr.searchTodayByResDate(pageRequestDTO2.getPageable("memoCreatedDate"));
 		int totalcount = (int)result.getTotalElements();
 		
 		List<NoticeCheckDTO> dtolist = result.getContent().stream().map(x -> modelMapper.map(x, NoticeCheckDTO.class)).collect(Collectors.toList());
 		
-		PageResponseDTO<NoticeCheckDTO> pageResponseDTO = PageResponseDTO.<NoticeCheckDTO>withAll().dtoList(dtolist).pageRequestDTO(pageRequestDTO).total(totalcount).build();
+		PageResponseDTO2<NoticeCheckDTO> pageResponseDTO2 = PageResponseDTO2.<NoticeCheckDTO>withAll().dtoList(dtolist).pageRequestDTO2(pageRequestDTO2).total(totalcount).build();
 		
-		return pageResponseDTO;
+		return pageResponseDTO2;
 	}
 
 	@Override
-	public PageResponseDTO<NoticeCheckDTO> noticeMemoSearchDes(PageRequestDTO pageRequestDTO, LocalDateTime today, LocalDateTime tomorrow) {
+	public PageResponseDTO2<NoticeCheckDTO> noticeMemoSearchDes(PageRequestDTO2 pageRequestDTO2) {
 		
-		Page<NoticeCheck> result = ncr.searchTodayByDesDate(today, tomorrow, pageRequestDTO.getPageable("memoCreatedDate"));
+		Page<NoticeCheck> result = ncr.searchTodayByDesDate(pageRequestDTO2.getPageable("memoCreatedDate"));
 		int totalcount = (int)result.getTotalElements();
 		
 		List<NoticeCheckDTO> dtolist = result.getContent().stream().map(x -> modelMapper.map(x, NoticeCheckDTO.class)).collect(Collectors.toList());
 		
-		PageResponseDTO<NoticeCheckDTO> pageResponseDTO = PageResponseDTO.<NoticeCheckDTO>withAll().dtoList(dtolist).total(totalcount).pageRequestDTO(pageRequestDTO).build();
+		PageResponseDTO2<NoticeCheckDTO> pageResponseDTO2 = PageResponseDTO2.<NoticeCheckDTO>withAll().dtoList(dtolist).total(totalcount).pageRequestDTO2(pageRequestDTO2).build();
 		
-		return pageResponseDTO;
+		return pageResponseDTO2;
+	}
+
+	@Override
+	public NoticeCheckDTO noticeReadOne(String noticeNo) {
+		
+		if(ncr.findById(noticeNo).isPresent()) {
+			NoticeCheck nc = ncr.findById(noticeNo).orElseThrow();
+			
+			return modelMapper.map(nc, NoticeCheckDTO.class);
+		}else {
+			
+			return null;
+		}
+		
+		
 	}
 
 }
